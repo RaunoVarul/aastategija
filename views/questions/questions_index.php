@@ -3,12 +3,16 @@
     <?php foreach ($questions as $question): ?>
         <li class="list-group-item">
             <a href="questions/<?= $question['question_id'] ?>/<?= $question['question_name'] ?>"><?= $question['question_name'] ?></a>
-            <?foreach($answers as $answer): ?>
+            <?php foreach($answers as $answer)
+                if($answer['question_id']==$question['question_id']):
+            ?>
                 <li class="list-group-item">
                     <p>
                         <?= $answer['answer_name'] ?>
                     </p>
                 </li>
+            <?php endif ?>
+
         </li>
     <?php endforeach ?>
 </ul>

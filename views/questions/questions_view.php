@@ -7,9 +7,15 @@
     </tr>
 
     <tr>
-        <th><?= __("Question") ?><?= __("name") ?></th>
+        <th><?= __("Question ") ?><?= __("name") ?></th>
         <td><?= $question['question_name'] ?></td>
     </tr>
+    <?php foreach ($answer as $a): ?>
+        <tr>
+            <th><?= __("vastus")?></th>
+            <td><?= $a['answer_name']?></td>
+        </tr>
+    <?php endforeach?>
 
 </table>
 
