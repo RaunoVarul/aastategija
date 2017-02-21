@@ -7,6 +7,11 @@
     </tr>
 
     <tr>
+        <th><?= __("Question") ?> ID</th>
+        <td><?= $answer['question_id'] ?></td>
+    </tr>
+
+    <tr>
         <th><?= __("Answer") ?><?= __("name") ?></th>
         <td><?= $answer['answer_name'] ?></td>
     </tr>

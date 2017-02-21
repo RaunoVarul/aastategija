@@ -51,7 +51,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="courses"><?= __('Courses') ?></a></li>
-
+                <li><a href="questions"><?= __('Questions') ?></a></li>
+                <li><a href="answers"><?= __('Answers') ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="..">Sample item</a></li>

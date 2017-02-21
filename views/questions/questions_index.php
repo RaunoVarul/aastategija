@@ -3,6 +3,12 @@
     <?php foreach ($questions as $question): ?>
         <li class="list-group-item">
             <a href="questions/<?= $question['question_id'] ?>/<?= $question['question_name'] ?>"><?= $question['question_name'] ?></a>
+            <?foreach($answers as $answer): ?>
+                <li class="list-group-item">
+                    <p>
+                        <?= $answer['answer_name'] ?>
+                    </p>
+                </li>
         </li>
     <?php endforeach ?>
 </ul>
