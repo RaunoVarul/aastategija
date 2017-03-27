@@ -1,31 +1,23 @@
-<h1><?= __("Question") ?> '<?= $question['question_name'] ?>'</h1>
-<table class="table table-bordered">
-
-    <tr>
-        <th><?= __("Question") ?> ID</th>
-        <td><?= $question['question_id'] ?></td>
-    </tr>
-
-    <tr>
-        <th><?= __("Question ") ?><?= __("name") ?></th>
-        <td><?= $question['question_name'] ?></td>
-    </tr>
-    <?php foreach ($answer as $a): ?>
-        <tr>
-            <th><?= __("vastus")?></th>
-            <td><?= $a['answer_name']?></td>
-        </tr>
-    <?php endforeach?>
-
-</table>
-
-<!-- EDIT BUTTON -->
 <?php if ($auth->is_admin): ?>
-    <form action="questions/edit/<?= $question['question_id'] ?>">
-        <div class="pull-right">
-            <button class="btn btn-primary">
-                <?= __("Edit") ?>
-            </button>
-        </div>
+    <h3><?= __("Lisa uus küsimus") ?></h3>
+
+    <form method="post" id="form">
+    <form id="form" method="post">
+        <table class="table table-bordered table-hover table-condensed">
+            <tr>
+                <th><?= __("Küsimuse nimi") ?></th>
+                <td colspan="2"><input style="width: 99%;" class="form-control" type="text" name="data[question_name]" placeholder=""/></td>
+            </tr>
+
+            <?php for ($i=0; $i < 3; $i++){ ?>
+                <tr>
+                    <th><?= __('Vastus') ?><?= $i+1 ?></th>
+                    <td><input class="form-control" type="text" name="answers[answer_<?= $i+1 ?>]"/></td>
+                    <td><label for="<?= $question['question_id'] ?>">Õige vastus? </label><input type="checkbox" name="answers[right_answer_<?= $i+1 ?>]"/></td>
+                </tr>
+            <?php } ?>
+        </table>
+
+        <button class="btn btn-primary" type="submit"><?= __("Lisa") ?></button>
     </form>
 <?php endif; ?>

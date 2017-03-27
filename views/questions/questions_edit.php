@@ -8,9 +8,30 @@
 <form id="form" method="post">
     <table class="table table-bordered">
         <tr>
-            <th><?= __('Question name') ?></th>
-            <td><input type="text" name="data[question_name]" value="<?= $question['question_name'] ?>"/></td>
+            <th><?= __('Question ID') ?></th>
+            <td colspan="2"><input type="text" name="data[question_id]" value="<?= $question['question_id'] ?>"/></td>
         </tr>
+
+        <tr>
+            <th><?= __('Question name') ?></th>
+            <td colspan="2"><input style="width: 99%" type="text" name="data[question_name]" value="<?= $question['question_name'] ?>"/></td>
+        </tr>
+        <!-- Echo all the answers and checkbox if they are right or not, check right one  -->
+        <?php for ($i=0; $i < 3; $i++){ ?>
+        <tr>
+            <th><?= __('Answer name') ?><?= $i+1 ?></th>
+            <td><input type="text" name="answers[answer_<?= $i+1 ?>]" value="<?= $answers[$i]['answer'] ?>"/></td>
+            <?php
+            //Get right_ answer to check right one
+            $right_answer = get_one("SELECT answer FROM answers WHERE question_id = '{$question['question_id']}' AND right_answer = 1");
+            ?>
+            <td>
+                <label for="<?= $question['question_id'] ?>">Is right?: </label>
+                <input type="checkbox" name="answers[right_answer_<?= $i+1 ?>]" value="<?= $answers[$i]['right_answer'] ?>"
+                    <?php if ($right_answer == $answers[$i]['answer']){echo "checked";} ?>/>
+            </td>
+            <?php } ?>
+
     </table>
 </form>
 

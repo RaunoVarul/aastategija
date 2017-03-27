@@ -72,48 +72,126 @@
 
 <body>
 
+
 <div class="container">
 
-    <form class="form-signin" method="post">
+    <div class="starter-template">
+        <div id="exTab1" class="container">
+            <ul  class="nav nav-pills">
+                <li class="active">
+                    <a  href="#1a" data-toggle="tab">Sisseastujale</a>
+                </li>
+                <li>
+                    <a href="#2a" data-toggle="tab">Õpetajale</a>
+                </li>
+            </ul>
 
-        <h2 class="form-signin-heading"><?= __('Please sign in') ?></h2>
+            <div class="tab-content clearfix">
 
-        <?php if (isset($errors)) {
-            foreach ($errors as $error): ?>
-                <div class="alert alert-danger">
-                    <?= $error ?>
+                <div class="tab-pane active" id="1a">
+                    <form method="post">
+                        <h2><?= __('Palun sisesta andmed')?></h2>
+
+                        <label for="firstname"><?= __('Firstname') ?></label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="Firstname" name="first_name" type="text" class="form-control" placeholder="First name" autofocus>
+                        </div>
+
+                        <br/>
+
+                        <label for="lastname"><?= __('Lastname') ?></label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="lastname" name="last_name" type="text" class="form-control" placeholder="Last name" autofocus>
+                        </div>
+
+                        <br/>
+
+                        <label for="isikukood"><?= __('Personal id') ?></label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="Isikukood" name="personal_id" type="number" class="form-control" placeholder="Personal ID" autofocus>
+                        </div>
+
+                        <br/>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="sisestus"><?= __('Insert') ?></button>
+                    </form>
                 </div>
-            <?php endforeach;
-        } ?>
+                <div class="tab-pane" id="2a">
+
+                    <form  method="post" name="logining">
+
+                        <h2><?= __('Palun logi sisse')?></h2>
+
+                        <?php if (isset($errors)) {
+                            foreach ($errors as $error): ?>
+                                <div class="alert alert-danger">
+                                    <?= $error ?>
+                                </div>
+                            <?php endforeach;
+                        } ?>
 
 
-        <label for="user"><?= __('Username') ?></label>
+                        <label for="user"><?= __('Username') ?></label>
 
-        <div class="input-group">
-            <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input id="user" name="email" type="text" class="form-control" placeholder="email" autofocus>
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-user"></i></span>
+                            <input id="user" name="email" type="text" class="form-control" placeholder="email" autofocus>
+                        </div>
+
+                        <br/>
+
+                        <label for="pass"><?= __('Password') ?></label>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="icon-key"></i></span>
+                            <input id="pass" name="password" type="password" class="form-control" placeholder="******">
+                        </div>
+
+                        <br/>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="login"><?= __('Sign in') ?></button>
+                    </form>
+                </div>
+
+            </div>
         </div>
+    </div>
 
-        <br/>
-
-        <label for="pass"><?= __('Password') ?></label>
-
-        <div class="input-group">
-            <span class="input-group-addon"><i class="icon-key"></i></span>
-            <input id="pass" name="password" type="password" class="form-control" placeholder="******">
-        </div>
-
-        <br/>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?= __('Sign in') ?></button>
-    </form>
-
-</div>
-<!-- /container -->
+</div><!-- /.container -->
 
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script>
+    $('.the-userbox-tabs li').on('click',function(){
+
+        $('.the-userbox-tabs li').each(function() {
+
+            $(this).removeClass('active');
+
+        });
+
+        $('.the-userbox-form').each(function() {
+
+            $(this).hide();
+
+        });
+
+        $(this).addClass('active');
+
+        $('.the-userbox-form#' + $(this).attr('id')).show();
+
+    });
+</script>
+
 </body>
 </html>

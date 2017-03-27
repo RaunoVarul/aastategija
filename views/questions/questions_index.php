@@ -1,34 +1,37 @@
-<h3><?= __("Questions") ?></h3>
-<ul class="list-group">
-    <?php foreach ($questions as $question): ?>
-        <li class="list-group-item">
-            <a href="questions/<?= $question['question_id'] ?>/<?= $question['question_name'] ?>"><?= $question['question_name'] ?></a>
-            <?php foreach($answers as $answer)
-                if($answer['question_id']==$question['question_id']):
-            ?>
-                <li class="list-group-item">
-                    <p>
-                        <?= $answer['answer_name'] ?>
-                    </p>
-                </li>
-            <?php endif ?>
-
-        </li>
-    <?php endforeach ?>
-</ul>
-
-<?php if ($auth->is_admin): ?>
-<h3><?= __("Add new question") ?></h3>
-
-<form method="post" id="form">
-    <form id="form" method="post">
-        <table class="table table-bordered">
+<!-- Uus tabel -->
+<div id="question_table">
+    <table class="table table-bordered table-hover table-striped">
+        <thead class="table-info">
+        <tr class="">
+            <th>ID</th>
+            <th>Küsimus</th>
+            <th>Vastused</th>
+            <th>Muuda</th>
+        </tr>
+        </thead>
+        <?php foreach ($questions as $question): ?>
             <tr>
-                <th><?= __("Name") ?></th>
-                <td><input type="text" name="data[question_name]" placeholder=""/></td>
+                <td><?= $question['question_id'] ?></td>
+                <td><?= $question['question_name'] ?></td>
+                <td>
+                    <?php
+                    foreach ($answers as $answer): ?>
+                        <?php if($answer['question_id'] == $question['question_id'] AND $answer['right_answer'] ==1){?>
+                            <p style="color: green;"><?= $answer['answer'] ?></p>
+                        <?php }elseif($answer['question_id'] == $question['question_id']){ ?>
+                            <p style="color: red;"><?= $answer['answer'] ?></p>
+                        <?php } ?>
+                    <?php endforeach ?>
+                </td>
+                <td> <form action="questions/edit/<?= $question['question_id'] ?>">
+                        <button class="btn btn-primary pull" style="width: 80px;">
+                            Muuda
+                        </button>
+                    </form>
+                </td>
             </tr>
-        </table>
+        <?php endforeach ?>
+    </table>
+</div>
 
-        <button class="btn btn-primary" type="submit"><?= __("Add") ?></button>
-    </form>
-    <?php endif; ?>
+

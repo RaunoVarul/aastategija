@@ -50,14 +50,22 @@ class Auth
         if ($this->logged_in) {
             return TRUE;
         }
-
-
+        if(isset($_POST['sisestus'])) {
+            insert("testers", array('first_name'=>$_POST['first_name'], 'last_name'=>$_POST['last_name'],'personal_id'=>$_POST['personal_id']));
+            $user=get_first("select * from testers where first_name ='{$_POST['first_name']}'");
+            $this->load_user_data($user);
+            $_SESSION['user_id'] = $user['tester_id'];
+            return true;
+        }
+        else{
         // Not all credentials were provided
         if (!(isset($_POST['email']) && isset($_POST['password']))) {
 
             $this->show_login();
 
         }
+
+
 
 
         // Prevent SQL injection
@@ -69,7 +77,6 @@ class Auth
                            FROM users
                            WHERE email = '$email'
                            AND deleted = 0");
-
 
         // No such user or wrong password
         if (empty($user['user_id']) || !password_verify($_POST['password'], $user['password'])) {
@@ -84,8 +91,8 @@ class Auth
         // Load $this->auth with users table's field values
         $this->load_user_data($user);
 
-
-        return true;
+            return true;
+        }
 
     }
 

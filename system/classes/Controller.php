@@ -3,6 +3,7 @@
 class Controller
 {
     public $template = 'master';
+    public $requires_data =true;
     public $requires_auth = true;
 
     function render($template)

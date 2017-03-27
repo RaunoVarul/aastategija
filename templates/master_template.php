@@ -50,13 +50,11 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="courses"><?= __('Courses') ?></a></li>
                 <li><a href="questions"><?= __('Questions') ?></a></li>
-                <li><a href="answers"><?= __('Answers') ?></a></li>
+                <li><a href="testers"><?= __('Testers') ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="..">Sample item</a></li>
-                <li class="active"><a href="./">Sample active item</a></li>
+                <li><a <?= $auth->logged_in == true ? 'href="logout"' : 'href="login"'; ?>><?= $auth->logged_in == true ? __('Logi välja') : __('Logi sisse'); ?></a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
