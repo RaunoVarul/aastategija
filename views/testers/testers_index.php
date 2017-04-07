@@ -1,24 +1,34 @@
-<h3><?= __("Testers") ?></h3>
-<ul class="list-group">
-    <?php foreach ($testers as $tester): ?>
-        <li class="list-group-item">
-            <a href="testers/<?= $tester['tester_id'] ?>/<?= $tester['tester_name'] ?>"><?= $tester['tester_name'] ?></a>
-        </li>
-    <?php endforeach ?>
-</ul>
-
 <?php if ($auth->is_admin): ?>
-<h3><?= __("Add new tester") ?></h3>
-
-<form method="post" id="form">
-    <form id="form" method="post">
-        <table class="table table-bordered">
+    <h3><?= __("Testers") ?></h3>
+    <table class="table table-bordered table-hover table-striped">
+        <tr>
+            <td>ID</td>
+            <td>Eesnimi</td>
+            <td>Perenimi</td>
+            <td>Isikukood</td>
+            <td>Teooria punktid</td>
+            <td>Praktilise punktid</td>
+            <td>Muuda</td>
+        </tr>
+        <?php foreach ($testers as $tester): ?>
             <tr>
-                <th><?= __("Name") ?></th>
-                <td><input type="text" name="data[tester_name]" placeholder=""/></td>
-            </tr>
-        </table>
+                <td><?= $tester['tester_id'] ?></td>
+                <td><?= $tester['first_name'] ?></td>
+                <td><?= $tester['last_name'] ?></td>
+                <td><?= $tester['personal_id'] ?></td>
+                <td><?= $tester['theor_test'] ?></td>
+                <td><?= $tester['practical_test'] ?></td>
 
-        <button class="btn btn-primary" type="submit"><?= __("Add") ?></button>
-    </form>
-    <?php endif; ?>
+                <td> <form action="testers/edit/<?= $tester['tester_id'] ?>">
+                        <button class="btn btn-primary pull" style="width: 80px;">
+                            Muuda
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+
+        <?php endforeach ?>
+    </table>
+
+<?php endif; ?>

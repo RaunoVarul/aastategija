@@ -4,12 +4,12 @@
         You are not an administrator.
     </div>
     <?php exit(); endif; ?>
-<h1>Answer '<?= $answer['answer_name'] ?>'</h1>
+<h1>Practical '<?= $practical['practical_name'] ?>'</h1>
 <form id="form" method="post">
     <table class="table table-bordered">
         <tr>
-            <th><?= __('Answer name') ?></th>
-            <td><input type="text" name="data[answer_name]" value="<?= $answer['answer_name'] ?>"/></td>
+            <th><?= __('Practical name') ?></th>
+            <td><input type="text" name="data[practical_name]" value="<?= $practical['practical_name'] ?>"/></td>
         </tr>
     </table>
 </form>
@@ -19,12 +19,12 @@
 
     <!-- CANCEL -->
     <button class="btn btn-default"
-            onclick="window.location.href = 'answers/view/<?= $answer['answer_id'] ?>/<?= $answer['answername'] ?>'">
+            onclick="window.location.href = 'practicals/view/<?= $practical['practical_id'] ?>/<?= $practical['practicalname'] ?>'">
         <?= __("Cancel") ?>
     </button>
 
     <!-- DELETE -->
-    <button class="btn btn-danger" onclick="delete_answer(<?= $answer['answer_id'] ?>)">
+    <button class="btn btn-danger" onclick="delete_practical(<?= $practical['practical_id'] ?>)">
         <?= __("Delete") ?>
     </button>
 
@@ -39,10 +39,10 @@
 <!-- JAVASCRIPT
 ==============================================================================-->
 <script type="application/javascript">
-    function delete_answer() {
-        $.post('<?=BASE_URL?>answers/delete', {answer_id: <?= $answer['answer_id'] ?>}, function (response) {
+    function delete_practical() {
+        $.post('<?=BASE_URL?>practicals/delete', {practical_id: <?= $practical['practical_id'] ?>}, function (response) {
             if(response == 'Ok'){
-                window.location.href = '<?=BASE_URL?>answers';
+                window.location.href = '<?=BASE_URL?>practicals';
             }
         })
     }

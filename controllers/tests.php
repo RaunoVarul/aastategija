@@ -1,29 +1,42 @@
 <?php namespace Halo;
 
+use \Aastategija\Tests as Test_module;
+
 class tests extends Controller
 {
 
     function index()
     {
-        $this->tests = get_all("SELECT * FROM tests");
+        $this->questions =Test_module::get_questions() ;
+
+
+
     }
 
-    function view()
-    {
-        $test_id = $this->params[0];
-        $this->test = get_first("SELECT * FROM tests WHERE test_id = '{$test_id}'");
-    }
 
-    function edit()
+    function salvesta()
     {
-        $test_id = $this->params[0];
-        $this->test = get_first("SELECT * FROM tests WHERE test_id = '{$test_id}'");
-    }
 
-    function post_edit()
-    {
-        $data = $_POST['data'];
-        insert('test', $data);
+        // checks the correct answer for a question
+        if (isset($_POST['salvesta'])) {
+            $punktid = 0;
+            $questions =Test_module::get_questions() ;
+            for ($i = 0; $i < 10; $i++) {
+                if ($_POST['answ' . $i] == $questions[$i]['answer']) {
+                    $punktid++;
+                }
+            }
+
+            // sends the amount of points to results
+            $sql = array(
+                'theor_test' => $punktid,
+                'practical_test' => '0'
+            );
+
+
+            // updates current session data
+            update('testers', $sql, 'tester_id =' . $_SESSION['user_id']);
+        }
     }
 
     function ajax_delete()

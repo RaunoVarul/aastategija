@@ -4,12 +4,33 @@
         You are not an administrator.
     </div>
     <?php exit(); endif; ?>
-<h1>Tester '<?= $tester['tester_name'] ?>'</h1>
+<h1>Tester "<?= $tester['first_name'] ?> <?= $tester['last_name'] ?>"</h1>
 <form id="form" method="post">
+    <!--Testers data table -->
     <table class="table table-bordered">
         <tr>
+            <th><?= __('ID') ?></th>
+            <td><input type="number" name="data[tester_id]" disabled="disabled" style="background-color: #b0b1b2" value="<?= $tester['tester_id'] ?>"/></td>
+        </tr>
+        <tr>
             <th><?= __('Tester name') ?></th>
-            <td><input type="text" name="data[tester_name]" value="<?= $tester['tester_name'] ?>"/></td>
+            <td><input type="text" name="data[first_name]" value="<?= $tester['first_name'] ?>"/></td>
+        </tr>
+        <tr>
+            <th><?= __('Perenimi') ?></th>
+            <td><input type="text" name="data[last_name]" value="<?= $tester['last_name'] ?>"/></td>
+        </tr>
+        <tr>
+            <th><?= __('Isikukood') ?></th>
+            <td><input type="text" name="data[personal_id]" value="<?= $tester['personal_id'] ?>"/></td>
+        </tr>
+        <tr>
+            <th><?= __('Teooria punktid') ?></th>
+            <td><input type="number" name="data[theor_test]" disabled="disabled" style="background-color: #b0b1b2" value="<?= $tester['theor_test'] ?>"/></td>
+        </tr>
+        <tr>
+            <th><?= __('Praktilise punktid') ?></th>
+            <td><input type="number" name="data[practical_test]" value="<?= $tester['practical_test'] ?>"/></td>
         </tr>
     </table>
 </form>

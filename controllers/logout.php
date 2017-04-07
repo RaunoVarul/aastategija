@@ -9,7 +9,7 @@
 class logout extends Controller
 {
     public $requires_auth = false;
-
+    //Logout
     function index()
     {
         session_destroy();

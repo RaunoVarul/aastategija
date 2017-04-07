@@ -44,10 +44,9 @@ function q($sql, & $query_pointer = NULL, $debug = FALSE)
     if ($debug) {
         print "<pre>$sql</pre>";
     }
-    $query_pointer = mysqli_query($db, $sql) or db_error_out();
+    $query_pointer = mysqli_query($db, $sql) or db_error_out($sql);
     switch (substr($sql, 0, 6)) {
-        case 'SELECT':
-            exit("q($sql): Please don't use q() for SELECTs, use get_one() or get_first() or get_all() instead.");
+
         case 'UPDA':
             exit("q($sql): Please don't use q() for UPDATEs, use update() instead.");
         default:
@@ -64,7 +63,7 @@ function get_one($sql, $debug = FALSE)
     }
     switch (substr($sql, 0, 6)) {
         case 'SELECT':
-            $q = mysqli_query($db, $sql) or db_error_out();
+            $q = mysqli_query($db, $sql) or db_error_out($sql);
             $result = mysqli_fetch_array($q);
             return empty($result) ? NULL : $result[0];
         default:
@@ -75,7 +74,7 @@ function get_one($sql, $debug = FALSE)
 function get_all($sql)
 {
     global $db;
-    $q = mysqli_query($db, $sql) or db_error_out();
+    $q = mysqli_query($db, $sql) or db_error_out($sql);
     while (($result[] = mysqli_fetch_assoc($q)) || array_pop($result)) {
         ;
     }
@@ -85,7 +84,7 @@ function get_all($sql)
 function get_first($sql)
 {
     global $db;
-    $q = mysqli_query($db, $sql) or db_error_out();
+    $q = mysqli_query($db, $sql) or db_error_out($sql);
     $first_row = mysqli_fetch_assoc($q);
     return empty($first_row) ? array() : $first_row;
 }
@@ -189,7 +188,7 @@ function insert($table, $data)
     if ($table and is_array($data) and !empty($data)) {
         $values = implode(',', escape($data));
         $sql = "INSERT INTO `{$table}` SET {$values} ON DUPLICATE KEY UPDATE {$values}";
-        $q = mysqli_query($db, $sql) or db_error_out();
+        $q = mysqli_query($db, $sql) or db_error_out($sql);
         $id = mysqli_insert_id($db);
         return ($id > 0) ? $id : FALSE;
     } else {
@@ -208,7 +207,7 @@ function update($table, array $data, $where)
         } else {
             $sql = "UPDATE `{$table}` SET {$values}";
         }
-        $id = mysqli_query($db, $sql) or db_error_out();
+        $id = mysqli_query($db, $sql) or db_error_out($sql);
         return ($id > 0) ? $id : FALSE;
     } else {
         return FALSE;

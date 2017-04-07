@@ -30,7 +30,6 @@ class Auth
     function load_user_data($user)
     {
 
-
         foreach ($user as $user_attr => $value) {
             $this->$user_attr = $value;
         }
@@ -50,46 +49,43 @@ class Auth
         if ($this->logged_in) {
             return TRUE;
         }
-        if(isset($_POST['sisestus'])) {
-            insert("testers", array('first_name'=>$_POST['first_name'], 'last_name'=>$_POST['last_name'],'personal_id'=>$_POST['personal_id']));
-            $user=get_first("select * from testers where first_name ='{$_POST['first_name']}'");
+        if (isset($_POST['sisestus'])) {
+            $tester_id = insert("testers", array('first_name' => $_POST['first_name'], 'last_name' => $_POST['last_name'], 'personal_id' => $_POST['personal_id']));
+            $user = get_first("select * from testers where tester_id =$tester_id");
             $this->load_user_data($user);
             $_SESSION['user_id'] = $user['tester_id'];
             return true;
-        }
-        else{
-        // Not all credentials were provided
-        if (!(isset($_POST['email']) && isset($_POST['password']))) {
+        } else {
+            // Not all credentials were provided
+            if (!(isset($_POST['email']) && isset($_POST['password']))) {
 
-            $this->show_login();
+                $this->show_login();
 
-        }
-
+            }
 
 
+            // Prevent SQL injection
+            $email = mysqli_escape_string($db, $_POST['email']);
 
-        // Prevent SQL injection
-        $email = mysqli_escape_string($db, $_POST['email']);
 
-
-        // Attempt to retrieve user data from database
-        $user = get_first("SELECT * 
+            // Attempt to retrieve user data from database
+            $user = get_first("SELECT * 
                            FROM users
                            WHERE email = '$email'
                            AND deleted = 0");
 
-        // No such user or wrong password
-        if (empty($user['user_id']) || !password_verify($_POST['password'], $user['password'])) {
-            $this->show_login([__("Wrong username or password")]);
-        }
+            // No such user or wrong password
+            if (empty($user['user_id']) || !password_verify($_POST['password'], $user['password'])) {
+                $this->show_login([__("Wrong username or password")]);
+            }
 
 
-        // User has provided correct login data if we are here
-        $_SESSION['user_id'] = $user['user_id'];
+            // User has provided correct login data if we are here
+            $_SESSION['user_id'] = $user['user_id'];
 
 
-        // Load $this->auth with users table's field values
-        $this->load_user_data($user);
+            // Load $this->auth with users table's field values
+            $this->load_user_data($user);
 
             return true;
         }

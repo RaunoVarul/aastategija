@@ -23,7 +23,7 @@ class testers extends Controller
     function post_edit()
     {
         $data = $_POST['data'];
-        insert('tester', $data);
+        update('testers', $data, "tester_id = '$data[tester_id]'");
     }
 
     function ajax_delete()

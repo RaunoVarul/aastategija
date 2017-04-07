@@ -26,7 +26,7 @@
             $right_answer = get_one("SELECT answer FROM answers WHERE question_id = '{$question['question_id']}' AND right_answer = 1");
             ?>
             <td>
-                <label for="<?= $question['question_id'] ?>">Is right?: </label>
+                <label for="<?= $question['question_id'] ?>">True?: </label>
                 <input type="checkbox" name="answers[right_answer_<?= $i+1 ?>]" value="<?= $answers[$i]['right_answer'] ?>"
                     <?php if ($right_answer == $answers[$i]['answer']){echo "checked";} ?>/>
             </td>

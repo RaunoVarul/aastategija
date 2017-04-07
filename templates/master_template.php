@@ -37,29 +37,31 @@
 <body>
 
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
+<?php if(!empty($this->auth->is_admin)): ?>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><?= PROJECT_NAME ?></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="questions"><?= __('Questions') ?></a></li>
+                    <li><a href="testers"><?= __('Testers') ?></a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a <?= $auth->logged_in == true ? 'href="logout"' : 'href="login"'; ?>><?= $auth->logged_in == true ? __('Logi välja') : __('Logi sisse'); ?></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="questions"><?= __('Questions') ?></a></li>
-                <li><a href="testers"><?= __('Testers') ?></a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a <?= $auth->logged_in == true ? 'href="logout"' : 'href="login"'; ?>><?= $auth->logged_in == true ? __('Logi välja') : __('Logi sisse'); ?></a></li>
-            </ul>
-        </div>
-        <!--/.nav-collapse -->
     </div>
-</div>
+<?php endif; ?>
 
 <div class="container">
 

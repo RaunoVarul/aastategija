@@ -14,7 +14,9 @@
                 <td><?= $question['question_id'] ?></td>
                 <td><?= $question['question_name'] ?></td>
                 <td>
+                    <?=$answerOne['answer']?>
                     <?php
+
                     foreach ($answers as $answer): ?>
                         <?php if($answer['question_id'] == $question['question_id'] AND $answer['right_answer'] ==1){?>
                             <p style="color: green;"><?= $answer['answer'] ?></p>

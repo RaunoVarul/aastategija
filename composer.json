@@ -6,7 +6,8 @@
   },
   "autoload": {
     "psr-4": {
-      "Halo\\": "system/classes"
+      "Halo\\": "system/classes",
+      "Aastategija\\": "classes/Aastategija"
     }
   }
 }

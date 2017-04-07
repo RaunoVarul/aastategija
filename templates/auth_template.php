@@ -79,10 +79,10 @@
         <div id="exTab1" class="container">
             <ul  class="nav nav-pills">
                 <li class="active">
-                    <a  href="#1a" data-toggle="tab">Sisseastujale</a>
+                    <a  href="#1a" name="tester" data-toggle="tab">Sisseastujale</a>
                 </li>
                 <li>
-                    <a href="#2a" data-toggle="tab">Õpetajale</a>
+                    <a href="#2a" name="teacher" data-toggle="tab">Õpetajale</a>
                 </li>
             </ul>
 
@@ -90,37 +90,37 @@
 
                 <div class="tab-pane active" id="1a">
                     <form method="post">
-                        <h2><?= __('Palun sisesta andmed')?></h2>
+                    <h2><?= __('Palun sisesta andmed')?></h2>
 
-                        <label for="firstname"><?= __('Firstname') ?></label>
+                    <label for="firstname"><?= __('Firstname') ?></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icon-user"></i></span>
-                            <input id="Firstname" name="first_name" type="text" class="form-control" placeholder="First name" autofocus>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input id="Firstname" name="first_name" type="text" class="form-control" placeholder="First name" autofocus>
+                    </div>
 
-                        <br/>
+                    <br/>
 
-                        <label for="lastname"><?= __('Lastname') ?></label>
+                    <label for="lastname"><?= __('Lastname') ?></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icon-user"></i></span>
-                            <input id="lastname" name="last_name" type="text" class="form-control" placeholder="Last name" autofocus>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input id="lastname" name="last_name" type="text" class="form-control" placeholder="Last name" autofocus>
+                    </div>
 
-                        <br/>
+                    <br/>
 
-                        <label for="isikukood"><?= __('Personal id') ?></label>
+                    <label for="isikukood"><?= __('Personal id') ?></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="icon-user"></i></span>
-                            <input id="Isikukood" name="personal_id" type="number" class="form-control" placeholder="Personal ID" autofocus>
-                        </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="icon-user"></i></span>
+                        <input id="Isikukood" name="personal_id" type="number" class="form-control" placeholder="Personal ID" autofocus>
+                    </div>
 
-                        <br/>
+                    <br/>
 
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="sisestus"><?= __('Insert') ?></button>
-                    </form>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" name="sisestus"><?= __('Submit') ?></button>
+                </form>
                 </div>
                 <div class="tab-pane" id="2a">
 
