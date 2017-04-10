@@ -10,7 +10,7 @@
     <table class="table table-bordered">
         <tr>
             <th><?= __('ID') ?></th>
-            <td><input type="number" name="data[tester_id]" disabled="disabled" style="background-color: #b0b1b2" value="<?= $tester['tester_id'] ?>"/></td>
+            <td><input type="number" name="data[tester_id]" disabled="disabled" style="background-color: #caccce" value="<?= $tester['tester_id'] ?>"/></td>
         </tr>
         <tr>
             <th><?= __('Tester name') ?></th>
@@ -26,11 +26,19 @@
         </tr>
         <tr>
             <th><?= __('Teooria punktid') ?></th>
-            <td><input type="number" name="data[theor_test]" disabled="disabled" style="background-color: #b0b1b2" value="<?= $tester['theor_test'] ?>"/></td>
+            <td><input type="number" name="data[theor_test]" disabled="disabled" style="background-color: #caccce" value="<?= $tester['theor_test'] ?>"/></td>
         </tr>
         <tr>
             <th><?= __('Praktilise punktid') ?></th>
             <td><input type="number" name="data[practical_test]" value="<?= $tester['practical_test'] ?>"/></td>
+        </tr>
+        <tr>
+            <th><?= __('Praktilise ülesande vastus') ?></th>
+            <td><textarea rows="15" cols="100" type="text" name="data[practical_answ]" disabled="disabled" style="background-color: #caccce" value="<?= $tester['practical_answ'] ?>"><?= $tester['practical_answ'] ?></textarea></td>
+        </tr>
+        <tr>
+            <th><?= __('Praktilise ülesande küsimus') ?></th>
+            <td><textarea rows="15" cols="100" type="text" name="data[practical_name]" disabled="disabled" style="background-color: #caccce" value="<?= $prac_question['practical_name'] ?>"><?= $prac_question['practical_name'] ?></textarea></td>
         </tr>
     </table>
 </form>
@@ -40,7 +48,7 @@
 
     <!-- CANCEL -->
     <button class="btn btn-default"
-            onclick="window.location.href = 'testers/view/<?= $tester['tester_id'] ?>/<?= $tester['testername'] ?>'">
+            onclick="window.location.href = 'testers/'">
         <?= __("Cancel") ?>
     </button>
 

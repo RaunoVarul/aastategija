@@ -8,7 +8,7 @@
             <td>Isikukood</td>
             <td>Teooria punktid</td>
             <td>Praktilise punktid</td>
-            <td>Muuda</td>
+            <td></td>
         </tr>
         <?php foreach ($testers as $tester): ?>
             <tr>
@@ -20,8 +20,8 @@
                 <td><?= $tester['practical_test'] ?></td>
 
                 <td> <form action="testers/edit/<?= $tester['tester_id'] ?>">
-                        <button class="btn btn-primary pull" style="width: 80px;">
-                            Muuda
+                        <button class="btn btn-primary pull" style="width: 150px; ">
+                            Muuda/Hinda
                         </button>
                     </form>
                 </td>

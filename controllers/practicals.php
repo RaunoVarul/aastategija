@@ -1,34 +1,20 @@
 <?php namespace Halo;
 
+use Aastategija\Practicals as P;
+
 class practicals extends Controller
 {
 
     function index()
     {
-        $this->practicals = get_all("SELECT * FROM practicals");
+        $this->practical_test = get_first("SELECT * FROM practicals ORDER BY rand() limit 1");
     }
 
-    function view()
+    function AJAX_practicalTestAnswer()
     {
-        $practical_id = $this->params[0];
-        $this->practical = get_first("SELECT * FROM practicals WHERE practical_id = '{$practical_id}'");
+        $user_id = $_SESSION["user_id"];
+        $practical_test_answer = $_POST["practical_test_answer"];
+        $practical_question_id = $_POST["practical_question_id"];
+        P::sendAnswer($user_id, $practical_test_answer, $practical_question_id);
     }
-
-    function edit()
-    {
-        $practical_id = $this->params[0];
-        $this->practical = get_first("SELECT * FROM practicals WHERE practical_id = '{$practical_id}'");
-    }
-
-    function post_edit()
-    {
-        $data = $_POST['data'];
-        insert('practical', $data);
-    }
-
-    function ajax_delete()
-    {
-        exit(q("DELETE FROM practicals WHERE practical_id = '{$_POST['practical_id']}'") ? 'Ok' : 'Fail');
-    }
-
 }
