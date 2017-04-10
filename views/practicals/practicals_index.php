@@ -17,7 +17,7 @@
     <br>
     <table class="table table-bordered">
         <tr>
-            <textarea rows="15" cols="100"><?= $practical_test['practical_name']; ?></textarea>
+            <textarea rows="15" cols="100" disabled="disabled"><?= $practical_test['practical_name']; ?></textarea>
         </tr>
     </table>
 </div>
@@ -27,8 +27,8 @@
     <form>
         <table class="table table-bordered">
             <tr>
-                <textarea rows="15" cols="100" name="btn btn-outline-primary" id="practical_test_answer" placeholder="Kirjuta oma vastus siia ja ära unusta vormingut"></textarea>
-                <br>
+                <textarea rows="20" cols="100" name="btn btn-outline-primary" id="practical_test_answer" placeholder="Kirjuta oma vastus siia ja ära unusta vormingut"></textarea>
+                <br/>
                 <input type="button" id="sendAnswer" class="btn btn-primary btn-lg" value="Edasta!">
             </tr>
         </table>

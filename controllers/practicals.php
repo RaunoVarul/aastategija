@@ -13,7 +13,7 @@ class practicals extends Controller
     function AJAX_practicalTestAnswer()
     {
         $user_id = $_SESSION["user_id"];
-        $practical_test_answer = $_POST["practical_test_answer"];
+        $practical_test_answer = htmlentities($_POST["practical_test_answer"]);
         $practical_question_id = $_POST["practical_question_id"];
         P::sendAnswer($user_id, $practical_test_answer, $practical_question_id);
     }
