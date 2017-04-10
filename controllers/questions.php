@@ -5,6 +5,7 @@ class questions extends Controller
 
     function index()
     {
+
         $this->questions = get_all("SELECT * FROM questions");
         $this->answers = get_all("SELECT * FROM answers");
     }

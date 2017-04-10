@@ -31,4 +31,25 @@ class Tests
 
         return $questions;
     }
+
+    public static function get_correct_answers()
+    {
+        q("SELECT * FROM answers WHERE answer = 1", $q);
+        while ($row = mysqli_fetch_assoc($q)) {
+            $answers[$row['question_id']] = $row['answer_id'];
+        }
+        return $answers;
+    }
+
+
+    public static function get_score($submitted_answers, $correct_answers)
+    {
+        $score = 0;
+        foreach ($submitted_answers as $question_id => $answer_id) {
+            ("$correct_answers[$question_id] == $answer_id");
+            if ($correct_answers[$question_id] == $answer_id)
+                $score++;
+        }
+        return $score;
+    }
 }

@@ -1,28 +1,4 @@
-<script src="vendor/components/jquery/jquery.js"></script>
-<script>
-    var request;
-    $(function () {
-        $('#form').bind('submit', function (event) {
-            $(window).off('beforeunload');
-            event.preventDefault();
-            var $form = $(this);
-            var $salvesta = "salvesta = 1";
-            var $inputs = $form.find("input");
-            var serializedData = $salvesta + "&" + $inputs.serialize();
-            request = $.ajax({
-                type: 'POST',
-                url: 'tests/salvesta',
-                data: $(this).serialize() + "&salvesta=1",
-                success: function (response) {
-                    window.location = "/aastategija/practicals";
-                }
-            });
-        });
-    });
-</script>
-
-<?php $count = 0; ?>
-<form id="form" class="question_form" method="post">
+<form action= "process" id="form" class="question_form" method="post">
 
     <div class="funkyradio">
 
@@ -37,7 +13,7 @@
 
                 <div class="funkyradio-default">
 
-                    <input type="radio" name="questions[<?= $question_id ?>]" value="<?= $answer['id'] ?>" id="answer<?= $answer['id'] ?>">
+                    <input type="radio" name="answers[<?= $question_id ?>]" value="<?= $answer['id'] ?>" id="answer<?= $answer['id'] ?>">
                     <label for="answer<?= $answer['id'] ?>"><?= $answer['text'] ?></label><br>
 
                 </div>

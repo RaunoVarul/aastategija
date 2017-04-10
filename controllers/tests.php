@@ -1,6 +1,7 @@
 <?php namespace Halo;
 
 use \Aastategija\Tests as Test_module;
+use \Aastategija\Users as User_module;
 
 class tests extends Controller
 {
@@ -19,23 +20,10 @@ class tests extends Controller
 
         // checks the correct answer for a question
         if (isset($_POST['salvesta'])) {
-            $punktid = 0;
-            $questions =Test_module::get_questions() ;
-            for ($i = 0; $i < 10; $i++) {
-                if ($_POST['answ' . $i] == $questions[$i]['answer']) {
-                    $punktid++;
-                }
-            }
-
-            // sends the amount of points to results
-            $sql = array(
-                'theor_test' => $punktid,
-                'practical_test' => '0'
-            );
-
-
-            // updates current session data
-            update('testers', $sql, 'tester_id =' . $_SESSION['user_id']);
+            $correct_answers = Test_module::get_correct_answers();
+            $score = Test_module::get_score($_POST ['answers'], $correct_answers);
+            User_module::set_theoretical_score($_SESSION ['user_id'], $score);
+            exit();
         }
     }
 
