@@ -23,6 +23,7 @@ class tests extends Controller
             $correct_answers = Test_module::get_correct_answers();
             $score = Test_module::get_score($_POST ['answers'], $correct_answers);
             User_module::set_theoretical_score($_SESSION ['user_id'], $score);
+            header('Location: ' . BASE_URL . 'practicals');
             exit();
         }
     }

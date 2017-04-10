@@ -1,4 +1,4 @@
-<form action= "process" id="form" class="question_form" method="post">
+<form action= "<?=BASE_URL.'tests/salvesta'?>" id="form" class="question_form" method="post">
 
     <div class="funkyradio">
 

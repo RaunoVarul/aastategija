@@ -11,6 +11,6 @@ class Users
 {
     public static function set_theoretical_score($user_id, $score)
     {
-        update("testers", ["theor_test"=>$score, "practical_test"=>"1"], "tester_id = " .$user_id);
+        update("testers", ["theor_test"=>$score], "tester_id = " .$user_id);
     }
 }

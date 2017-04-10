@@ -34,7 +34,7 @@ class Tests
 
     public static function get_correct_answers()
     {
-        q("SELECT * FROM answers WHERE answer = 1", $q);
+        q("SELECT * FROM answers WHERE right_answer = 1", $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $answers[$row['question_id']] = $row['answer_id'];
         }

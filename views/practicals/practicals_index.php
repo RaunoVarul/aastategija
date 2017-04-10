@@ -1,9 +1,58 @@
-<h3><?= __("Practicals") ?></h3>
-<ul class="list-group">
-    <?php foreach ($practicals as $practical): ?>
-        <li class="list-group-item">
-            <a href="practicals/<?= $practical['practical_id'] ?>/<?= $practical['practical_name'] ?>"><?= $practical['practical_name'] ?></a>
-        </li>
-    <?php endforeach;
-    var_dump($_POST['input']);?>
-</ul>
+<style>
+    .center {
+        margin: auto;
+        width: 50%;
+    }
+</style>
+<script>
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+        history.pushState(null, null, document.URL);
+    });
+</script>
+
+<div class="center">
+    <h1>Praktiline test</h1>
+
+    <br>
+    <?= $practical_test['practical_text']; ?>
+</div>
+
+<div class="center">
+    <br/>
+    <form>
+        <textarea rows="15" cols="100" name="btn btn-outline-primary" id="practical_test_answer">
+            <!DOCTYPE html>
+            <html>
+                <body>
+
+                  <?php echo "<--kirjuta oma vastus siia-->";?>
+
+
+                </body>
+            </html>
+        </textarea>
+        <br>
+        <input type="button" id="sendAnswer" class="btn btn-primary btn-lg" value="Edasta!">
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#sendAnswer').click(function () {
+            var practical_test_answer = $("#practical_test_answer").val();
+            var practical_question_id = '<?=$practical_test['practical_id'];?>';
+            $.post("practical_tests/practicalTestAnswer", {
+                practical_test_answer: practical_test_answer,
+                practical_question_id: practical_question_id
+            }).done(function (data) {
+                if (data == "success") {
+                    location.href="practical_tests_previews"
+                } else {
+                    alert("Sisestasid vale isikukoodi. Sellist kasutajat ei ole andmebaasis!")
+                }
+            });
+        });
+    });
+</script>
