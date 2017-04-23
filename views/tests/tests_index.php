@@ -30,5 +30,27 @@
     <button class="btn btn-primary" type="submit" name="salvesta">Edasi</button>
 
 </form>
+<script src="vendor/components/jquery/jquery.js"></script>
+<script>
+    var request;
+    $(function () {
+        $('#form').bind('submit', function (event) {
+            $(window).off('beforeunload');
+            event.preventDefault();
+            var $form = $(this);
+            var $salvesta = "salvesta = 1";
+            var $inputs = $form.find("input");
+            var serializedData = $salvesta + "&" + $inputs.serialize();
+            request = $.ajax({
+                type: 'POST',
+                url: 'process',
+                data: $(this).serialize() + "&salvesta=1",
+                success: function (response) {
+                    window.location = "/aastategija/practicals";
+                }
+            });
+        });
+    });
+</script>
 
 
